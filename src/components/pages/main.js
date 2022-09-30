@@ -4,6 +4,10 @@ import "../css/main.css"
 import NavBarra from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 import Proyectos from '../proyects/proyect';
+import Register from './Register';
+import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
+
+
 
 function Main() {
     return (
@@ -16,7 +20,14 @@ function Main() {
 
         {/* BARRA DE NAVEGACION */}    
         <div>
-        <NavBarra/>
+        
+        <Router>
+            <NavBarra/>
+            <Switch>
+                <Route path="/signUp" exact component={Register} />
+            </Switch>
+        </Router>
+        
         </div>
         
         {/* PROYECTOS */}

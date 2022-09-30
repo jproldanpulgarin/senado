@@ -6,6 +6,9 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Image from "react-bootstrap/Image"
 import logo_senado from "../img/Logo_Senado.png"
 import "../navbar/Navbar.css"
+import { Link } from 'react-router-dom';
+import Register from '../pages/Register';
+
 
 function BarraNavegacion() {
   return (
@@ -56,8 +59,13 @@ function BarraNavegacion() {
 
                   <br/>
                   <Button  variant='secondary'>Login</Button>
-                  
-                  <a href='' id='signUp'>Sign Up</a>
+                  <Router>
+            <NavBarra/>
+            <Switch>
+                <Route path="/signUp" exact component={Register} />
+            </Switch>
+        </Router>
+                  <Link to="/signUp">SignUp</Link>
 
 
                 </Form>
