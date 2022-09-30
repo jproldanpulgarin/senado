@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+section{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+section .imgBox{
+    position: relative;
+    width: 50%;
+    height: 100%;
+   
+    
+}
+section .imgBox:before{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgb(1, 24, 29) 10%, rgb(109, 75, 3) 76%);
+    z-index: 1;
+    mix-blend-mode: screen;
+}
+section .imgBox img{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+section .contentBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+section .contentBox .formBx img{
+    width: 40%;
+    display:block;
+    margin:auto;
+    padding-bottom: 15px;
+    filter: invert(22%) sepia(88%) saturate(1471%) hue-rotate(31deg) brightness(95%) contrast(98%);
+    
+}
+section .contentBox .formBx{
+    width: 50%;
+
+}
+section .contentBox .formBx h6{
+   text-align: center;
+   margin-top: 50px;
+
+}
+section .contentBox .formBx h1{
+   color:rgb(109, 75, 3) ;
+   font-weight: 600;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-size: 1.5em;
+   text-transform: uppercase;
+   margin-bottom: 20px;
+   border-bottom: 4px solid rgb(109, 75, 3);
+   letter-spacing: 1px;
+    
+}
+section .contentBox .formBx input{
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid rgb(109, 75, 3);
+    font-size: 16px;
+    letter-spacing: 1px;
+    background: transparent;
+    border-radius: 30px;
+    color: gray;
+
+}
+#login{
+    background-color: rgb(182, 182, 182);
+    color: black;
+}
+#login:hover{
+    background-color: rgba(182, 118, 0, 0.863);
+    color: black;
+}
+

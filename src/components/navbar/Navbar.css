@@ -1,0 +1,17 @@
+form{
+    width: 260px;
+}
+.mb-2{
+    background-color: rgb(173, 173, 173);
+}
+
+#menu{
+    background-color: rgb(228, 228, 228);
+}
+
+#signUp{
+    font-size: 12px;
+    padding: 10px;
+}
+
+
