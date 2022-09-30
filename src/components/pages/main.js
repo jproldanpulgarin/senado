@@ -20,13 +20,8 @@ function Main() {
 
         {/* BARRA DE NAVEGACION */}    
         <div>
-        
-        <Router>
-            <NavBarra/>
-            <Switch>
-                <Route path="/signUp" exact component={Register} />
-            </Switch>
-        </Router>
+        <NavBarra/>
+     
         
         </div>
         

@@ -4,6 +4,7 @@ import Image from "react-bootstrap/Image"
 import logo from '../img/logo.png'
 import logo_senado from "../img/Logo_Senado.png"
 import "../css/signUp.css"
+import { Link } from 'react-router-dom';
 function Register(args) {
   const [modal, setModal] = useState(false);
 
@@ -11,9 +12,9 @@ function Register(args) {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>
-        Click Me
-      </Button>
+      <Link onClick={toggle}>
+        SignUp
+      </Link>
       <Modal isOpen={modal} toggle={toggle} {...args}>
         <ModalHeader toggle={toggle}>Register User Portal</ModalHeader>
         <ModalBody>

@@ -8,6 +8,7 @@ import logo_senado from "../img/Logo_Senado.png"
 import "../navbar/Navbar.css"
 import { Link } from 'react-router-dom';
 import Register from '../pages/Register';
+import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
 
 
 function BarraNavegacion() {
@@ -59,13 +60,15 @@ function BarraNavegacion() {
 
                   <br/>
                   <Button  variant='secondary'>Login</Button>
+                  <br/>
                   <Router>
-            <NavBarra/>
-            <Switch>
-                <Route path="/signUp" exact component={Register} />
-            </Switch>
-        </Router>
-                  <Link to="/signUp">SignUp</Link>
+           
+                      <Switch>
+                          <Route path="/signUp" exact component={Register} />
+                          <Link to="/signUp">SignUp</Link>
+                      </Switch>
+                  </Router>
+                  
 
 
                 </Form>
