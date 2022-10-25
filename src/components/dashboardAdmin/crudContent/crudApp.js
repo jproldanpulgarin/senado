@@ -48,7 +48,7 @@ class CrudApp extends React.Component {
 
   insertar=()=>{
     var valorNuevo={...this.state.form};
-    valorNuevo.id=this.state.length+1;
+    valorNuevo.id=this.state.data.length+1;
     var lista=this.state.data;
     lista.push(valorNuevo);
     this.setState({data:lista,modalInsertar:false})
@@ -112,11 +112,12 @@ class CrudApp extends React.Component {
               <label htmlFor="">Nombre:</label>
               <input
                 type="text"
-                name=""
+                name="name"
                 id=""
-                readOnly
+                
                 className="form-control"
                 onChange={this.handleChange}
+                
               />
             </FormGroup>
 
@@ -124,9 +125,9 @@ class CrudApp extends React.Component {
               <label htmlFor="">Edad:</label>
               <input
                 type="text"
-                name=""
+                name="age"
                 id=""
-                readOnly
+                
                 className="form-control"
                 onChange={this.handleChange}
               />
