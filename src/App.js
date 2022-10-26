@@ -25,6 +25,10 @@ export default function App() {
       <Aside/>
       <Content/>
       <Footer/>
+
+      npm init
+      npm install express
+      node server
     </div>
   )
 }

@@ -53,7 +53,7 @@ this.peticionGet();
             </tr>
           </thead>
           <tbody>
-            {this.state.data.map(e=>{
+           {/*  {this.state.data.map(e=>{
               return(
                 <td>{e.id}</td>
                 <td>{e.nombre}</td>
@@ -65,7 +65,7 @@ this.peticionGet();
                 <td><button className="btn btn-danger"><FontAwesomeIcon icon={faTrashAlt}/> </button>
                 </td>
               )
-            })}
+            })} */}
           </tbody>
         </table>
       </div>
