@@ -9,136 +9,66 @@ import {
   ModalHeader,
   ModalFooter,
 } from "reactstrap";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Component } from "react";
+
+const url="https://jsonplaceholder.typicode.com/"
+
+class CrudApp extends Component {
+
+//almacenar data
+state={
+  data:[]
+}
+
+peticionGet=()=>{
+  axios.get(url).then(response=>
+    console.log({data: response.data}));
+}
+componentDidMount(){
+this.peticionGet();
+}
 
 
-const data = [
-  { id: 1, name: "Juan Pablo Roldan Pulgarin", age: 23 },
-  { id: 2, name: "Ana Maria Roldan Pulgarin", age: 21 },
-  { id: 3, name: "Isabella Roldan Pulgarin", age: 15 },
-];
-class CrudApp extends React.Component {
-  state = {
-    data: data,
-    form: {
-      id: "",
-      name: "",
-      age: "",
-    },
-    modalInsertar: false,
-  };
-
-
-
-  handleChange = (e) => {
-    this.setState({
-      form: {
-        ...this.state.form,
-        [e.target.name]: e.target.value,
-      },
-    });
-  };
-
-  mostrarModalInsertar=()=>{
-    this.setState({modalInsertar:true})
-  }
-  ocultarModalInsertar=()=>{
-    this.setState({modalInsertar:false})
-  }
-
-  insertar=()=>{
-    var valorNuevo={...this.state.form};
-    valorNuevo.id=this.state.data.length+1;
-    var lista=this.state.data;
-    lista.push(valorNuevo);
-    this.setState({data:lista,modalInsertar:false})
-  }
 
   render() {
     return (
-      <>
-        <Container>
-          <br />
-          <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Agregar Registro</Button>
-          
-          <br />
-          <br />
-
-          <Table>
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Edad</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.data.map((e) => (
-                <tr>
-                  <td>{e.id}</td>
-                  <td>{e.name}</td>
-                  <td>{e.age}</td>
-                  <td>
-                    <Button color="primary">Editar</Button>{" "}
-                    <Button color="danger">Eliminar</Button>{" "}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Container>
-
-        <Modal isOpen={this.state.modalInsertar}>
-          <ModalHeader>
-            <div className="">
-              <h3>Insertar Registros</h3>
-            </div>
-          </ModalHeader>
-          <ModalBody>
-            <FormGroup>
-              <label htmlFor="">Id:</label>
-              <input
-                type="text"
-                name=""
-                id=""
-                readOnly
-                className="form-control"
-                value={this.state.data.length + 1}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <label htmlFor="">Nombre:</label>
-              <input
-                type="text"
-                name="name"
-                id=""
-                
-                className="form-control"
-                onChange={this.handleChange}
-                
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <label htmlFor="">Edad:</label>
-              <input
-                type="text"
-                name="age"
-                id=""
-                
-                className="form-control"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={()=>this.insertar()}> Insertar</Button>
-            <Button color="danger" onClick={() => this.ocultarModalInsertar()}>Cancelar</Button>
-          </ModalFooter>
-        </Modal>
-      </>
+      <div className="CrudApp">
+        <br />
+        <button className="btn btn-success">Agregar Partido</button>
+        <br />
+        <br />
+        <table className="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>NOMBRE</th>
+              <th>CREACION</th>
+              <th>ACTIVO</th>
+              <th>IMAGEN</th>
+              <th>ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.data.map(e=>{
+              return(
+                <td>{e.id}</td>
+                <td>{e.nombre}</td>
+                <td>{e.creacion}</td>
+                <td>{e.activo}</td>
+                <td>{e.imagen}</td>
+                <td><button className="btn btn-primary"><FontAwesomeIcon icon={faEdit}/> </button>
+                {""}
+                <td><button className="btn btn-danger"><FontAwesomeIcon icon={faTrashAlt}/> </button>
+                </td>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
