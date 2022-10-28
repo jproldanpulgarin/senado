@@ -56,26 +56,28 @@ class CrudApp extends Component {
   }
 
   //PETICION PUT
-  peticionPut=()=>{
-    axios.put(url+"/"+this.state.form.id, this.state.form).then(response=>{
-      this.modalInsertar();
+  peticionPut = () => {
+    axios
+      .put(url + "/" + this.state.form.id, this.state.form)
+      .then((response) => {
+        this.modalInsertar();
+        this.peticionGet();
+      });
+  };
+  //PETICION DELETE
+  peticionDelete = () => {
+    axios.delete(url + "/" + this.state.form.id).then((response) => {
+      this.setState({ modalEliminar: false });
       this.peticionGet();
-    })
-  }
-//PETICION DELETE
-  peticionDelete=()=>{
-    axios.delete(url+"/"+this.state.form.id).then(response=>{
-      this.setState({modalEliminar: false});
-      this.peticionGet();
-    })
-  }
+    });
+  };
 
   //PETICION EDITAR
   seleccionarPartido = (partidos) => {
-    console.log(partidos)
+    console.log(partidos);
     this.setState({
       tipoModal: "actualizar",
-      
+
       form: {
         id: partidos.id,
         nombre: partidos.nombre,
@@ -149,7 +151,13 @@ class CrudApp extends Component {
                       />{" "}
                     </button>{" "}
                     <button className="btn btn-danger">
-                      <FontAwesomeIcon icon={faTrashAlt}  onClick={()=>{this.seleccionarPartido(partidos); this.setState({modalEliminar: true})}} />{" "}
+                      <FontAwesomeIcon
+                        icon={faTrashAlt}
+                        onClick={() => {
+                          this.seleccionarPartido(partidos);
+                          this.setState({ modalEliminar: true });
+                        }}
+                      />{" "}
                     </button>
                   </td>
                 </tr>
@@ -167,6 +175,7 @@ class CrudApp extends Component {
               X
             </span>
           </ModalHeader>
+          <h3>Partido Politico</h3>
           <ModalBody>
             <div className="form-goup">
               <label htmlFor="id">ID</label>
@@ -249,14 +258,24 @@ class CrudApp extends Component {
         </Modal>
 
         <Modal isOpen={this.state.modalEliminar}>
-            <ModalBody>
-               Estás seguro que deseas eliminar a el partido  {form && form.nombre}
-            </ModalBody>
-            <ModalFooter>
-              <button className="btn btn-danger" onClick={()=>this.peticionDelete()}>Sí</button>
-              <button className="btn btn-secundary" onClick={()=>this.setState({modalEliminar: false})}>No</button>
-            </ModalFooter>
-          </Modal>
+          <ModalBody>
+            Estás seguro que deseas eliminar a el partido {form && form.nombre}
+          </ModalBody>
+          <ModalFooter>
+            <button
+              className="btn btn-danger"
+              onClick={() => this.peticionDelete()}
+            >
+              Sí
+            </button>
+            <button
+              className="btn btn-secundary"
+              onClick={() => this.setState({ modalEliminar: false })}
+            >
+              No
+            </button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
