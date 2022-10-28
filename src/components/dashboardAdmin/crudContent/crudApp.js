@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Table,
-  Button,
-  Container,
-  Modal,
-  ModalBody,
-  FormGroup,
-  ModalHeader,
-  ModalFooter,
-} from "reactstrap";
+import { Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -22,40 +13,77 @@ class CrudApp extends Component {
   state = {
     data: [],
     modalInsertar: false,
+    modalEliminar: false,
     form: {
       id: "",
       nombre: "",
       creacion: "",
-      activo: null,
+      activo: "",
       imagen: "",
+      tipoModal: "",
     },
   };
   //PETICION GET
   peticionGet = () => {
-    axios.get(url).then((response) => {
-      //console.log(response.data); MUESTRA LOS DATOS EN CONSOLA
-      this.setState({ data: response.data });
-    }).catch(error=>{
-      console.log(error.message)
-    }) 
+    axios
+      .get(url)
+      .then((response) => {
+        //console.log(response.data); MUESTRA LOS DATOS EN CONSOLA
+        this.setState({ data: response.data });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   //PETICION POST
   peticionPost = async () => {
-    delete this.state.form.id
-    await axios.post(url, this.state.form).then((response) => {
-      //cerrar el modal al momento de q el usuario inserte
-      this.modalInsertar();
-      this.peticionGet();
-      //manejo de errores
-    }).catch(error=>{
-      console.log(error.message)
-    }) 
-    
+    delete this.state.form.id;
+    await axios
+      .post(url, this.state.form)
+      .then((response) => {
+        //cerrar el modal al momento de q el usuario inserte
+        this.modalInsertar();
+        this.peticionGet();
+        //manejo de errores
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   componentDidMount() {
     this.peticionGet();
   }
+
+  //PETICION PUT
+  peticionPut=()=>{
+    axios.put(url+this.state.form.id, this.state.form).then(response=>{
+      this.modalInsertar();
+      this.peticionGet();
+    })
+  }
+//PETICION DELETE
+  peticionDelete=()=>{
+    axios.delete(url+this.state.form.id).then(response=>{
+      this.setState({modalEliminar: false});
+      this.peticionGet();
+    })
+  }
+
+  //PETICION EDITAR
+  seleccionarPartido = (partidos) => {
+    this.setState({
+      tipoModal: "actualizar",
+      
+      form: {
+        id: partidos.id,
+        nombre: partidos.nombre,
+        creacion: partidos.creacion,
+        activo: partidos.activo,
+        imagen: partidos.imagen,
+      },
+    });
+  };
 
   //VENTANA MODAL
   modalInsertar = () => {
@@ -74,13 +102,16 @@ class CrudApp extends Component {
   };
 
   render() {
-    const {form}=this.state
+    const { form } = this.state;
     return (
       <div className="CrudApp">
         <br />
         <button
           className="btn btn-success"
-          onClick={() => this.modalInsertar()}
+          onClick={() => {
+            this.setState({ form: null, tipoModal: "insertar" });
+            this.modalInsertar();
+          }}
         >
           Agregar Partido
         </button>
@@ -108,10 +139,16 @@ class CrudApp extends Component {
                   <td>{partidos.imagen}</td>
                   <td>
                     <button className="btn btn-primary">
-                      <FontAwesomeIcon icon={faEdit} />{" "}
+                      <FontAwesomeIcon
+                        onClick={() => {
+                          this.seleccionarPartido(partidos);
+                          this.modalInsertar();
+                        }}
+                        icon={faEdit}
+                      />{" "}
                     </button>{" "}
                     <button className="btn btn-danger">
-                      <FontAwesomeIcon icon={faTrashAlt} />{" "}
+                      <FontAwesomeIcon icon={faTrashAlt}  onClick={()=>{this.seleccionarPartido(partidos.id); this.setState({modalEliminar: true})}} />{" "}
                     </button>
                   </td>
                 </tr>
@@ -139,7 +176,7 @@ class CrudApp extends Component {
                 readOnly
                 className="form-control"
                 onChange={this.handleChange}
-                value={this.state.data.length+1}
+                value={form ? form.id : this.state.data.length + 1}
               />
               <br />
               <label htmlFor="nombre">NOMBRE</label>
@@ -149,7 +186,7 @@ class CrudApp extends Component {
                 id="nombre"
                 className="form-control"
                 onChange={this.handleChange}
-                value={form.nombre}
+                value={form ? form.nombre : ""}
               />
               <br />
               <label htmlFor="creacion">CREACION</label>
@@ -159,7 +196,7 @@ class CrudApp extends Component {
                 id=""
                 className="form-control"
                 onChange={this.handleChange}
-                value={form.creacion}
+                value={form ? form.creacion : ""}
               />
               <br />
               <label htmlFor="activo">ACTIVO</label>
@@ -169,7 +206,7 @@ class CrudApp extends Component {
                 id="activo"
                 className="form-control"
                 onChange={this.handleChange}
-                value={form.activo}
+                value={form ? form.activo : ""}
               />
               <br />
               <label htmlFor="imagen">IMAGEN</label>
@@ -179,14 +216,28 @@ class CrudApp extends Component {
                 id="imagen"
                 className="form-control"
                 onChange={this.handleChange}
-                value={form.imagen}
+                value={form ? form.imagen : ""}
               />
               <br />
             </div>
           </ModalBody>
 
           <ModalFooter>
-            <button className="btn btn-success" onClick={()=>this.peticionPost()}>Insertar</button>
+            {this.state.tipoModal == "insertar" ? (
+              <button
+                className="btn btn-success"
+                onClick={() => this.peticionPost()}
+              >
+                Insertar
+              </button>
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={() => this.peticionPut()}
+              >
+                Actualizar
+              </button>
+            )}
             <button
               className="btn btn-danger"
               onClick={() => this.modalInsertar()}
@@ -195,6 +246,16 @@ class CrudApp extends Component {
             </button>
           </ModalFooter>
         </Modal>
+
+        <Modal isOpen={this.state.modalEliminar}>
+            <ModalBody>
+               Estás seguro que deseas eliminar a el partido  {form && form.nombre}
+            </ModalBody>
+            <ModalFooter>
+              <button className="btn btn-danger" onClick={()=>this.peticionDelete()}>Sí</button>
+              <button className="btn btn-secundary" onClick={()=>this.setState({modalEliminar: false})}>No</button>
+            </ModalFooter>
+          </Modal>
       </div>
     );
   }

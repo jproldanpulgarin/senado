@@ -1,6 +1,7 @@
 
 import React from 'react'
-import CrudApp from './crudContent/CrudApp';
+import CrudApp from './crudContent/crudApp';
+
 
 
 
@@ -11,7 +12,7 @@ export default function Content() {
     <div className="content-wrapper">
 
 
-      <h1>Aqui estara todo el contenido</h1>
+      <h1>Se validara todo</h1>
 
       
       <CrudApp/>
