@@ -57,14 +57,14 @@ class CrudApp extends Component {
 
   //PETICION PUT
   peticionPut=()=>{
-    axios.put(url+this.state.form.id, this.state.form).then(response=>{
+    axios.put(url+"/"+this.state.form.id, this.state.form).then(response=>{
       this.modalInsertar();
       this.peticionGet();
     })
   }
 //PETICION DELETE
   peticionDelete=()=>{
-    axios.delete(url+this.state.form.id).then(response=>{
+    axios.delete(url+"/"+this.state.form.id).then(response=>{
       this.setState({modalEliminar: false});
       this.peticionGet();
     })
@@ -72,6 +72,7 @@ class CrudApp extends Component {
 
   //PETICION EDITAR
   seleccionarPartido = (partidos) => {
+    console.log(partidos)
     this.setState({
       tipoModal: "actualizar",
       
@@ -148,7 +149,7 @@ class CrudApp extends Component {
                       />{" "}
                     </button>{" "}
                     <button className="btn btn-danger">
-                      <FontAwesomeIcon icon={faTrashAlt}  onClick={()=>{this.seleccionarPartido(partidos.id); this.setState({modalEliminar: true})}} />{" "}
+                      <FontAwesomeIcon icon={faTrashAlt}  onClick={()=>{this.seleccionarPartido(partidos); this.setState({modalEliminar: true})}} />{" "}
                     </button>
                   </td>
                 </tr>
