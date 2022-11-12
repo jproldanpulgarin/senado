@@ -1,8 +1,8 @@
 import React,{Fragment} from 'react'
-import "../css/footer.css"
+import "../../css/footer.css"
 
-import footer from "../img/footer.png"
-import footer_diplomado from "../img/footer diplomado.jpg"
+import footer from "../../img/footer.png"
+/* import footer_diplomado from "../img/footer diplomado.jpg" */
 
 
 const Footer = () => {

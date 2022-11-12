@@ -1,11 +1,11 @@
 import React from 'react'
-import header from "../img/header.png"
-import "../css/main.css"
-import NavBarra from '../navbar/Navbar';
-import Footer from '../footer/Footer';
-import Proyectos from '../proyects/proyect';
-import Register from './Register';
-import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
+import header from "../../img/header.png"
+import "../../css/main.css"
+import NavBarra from '../Main/navbar/Navbar';
+import Footer from './Footer';
+import Proyectos from './proyects/proyect';
+/* import Register from './Register'; */
+
 
 
 

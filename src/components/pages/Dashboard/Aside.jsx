@@ -1,14 +1,15 @@
 import React from "react";
-import Logo_Senado from "../img/Logo_Senado.png"
-import logo_Colombia from "../img/logo_Colombia.png"
-import "../css/Aside.css"
+import Logo_Senado from "../../img/Logo_Senado.png";
+import logo_Colombia from "../../img/logo_Colombia.png";
+import "../../css/Aside.css";
+import { Link } from "react-router-dom";
 
 export default function Aside() {
   return (
     <div>
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
         {/* Brand Logo */}
-        <img src={Logo_Senado} className="logo"/>
+        <img src={Logo_Senado} className="logo" />
         <a href="index.html" className="brand-link">
           <img
             src="dist/img/AdminLTELogo.png"
@@ -16,7 +17,7 @@ export default function Aside() {
             className="brand-image img-circle elevation-3"
             style={{ opacity: ".8" }}
           />
-          
+
           <span className="brand-text font-weight-light">Admin Dashboard</span>
         </a>
         {/* Sidebar */}
@@ -65,14 +66,14 @@ export default function Aside() {
               <li className="nav-item menu-open">
                 <ul className="nav nav-treeview">
                   <li className="nav-item">
-                    <a href="./index.html" className="nav-link">
+                    <Link to="/contenido">
                       <i className="far fa-circle nav-icon" />
                       <p>Content</p>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
-           
+
               <li className="nav-item">
                 <a href="#" className="nav-link">
                   <i className="nav-icon fas fa-edit" />
@@ -223,6 +224,16 @@ export default function Aside() {
                     </a>
                   </li>
                 </ul>
+                <li className="nav-item menu-open">
+                <ul className="nav nav-treeview">
+                  <li className="nav-item">
+                    <Link to="/">
+                      <i className="far fa-circle nav-icon" />
+                      <p>Cerrar sesion</p>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
               </li>
               <li className="nav-item"></li>
             </ul>
@@ -230,9 +241,7 @@ export default function Aside() {
           {/* /.sidebar-menu */}
         </div>
         {/* /.sidebar */}
-        
       </aside>
-      
     </div>
   );
 }

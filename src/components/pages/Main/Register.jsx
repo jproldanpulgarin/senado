@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Image from "react-bootstrap/Image"
-import logo from '../img/logo.png'
-import logo_senado from "../img/Logo_Senado.png"
-import "../css/signUp.css"
+/* import logo from '../img/logo.png' */
+import logo_senado from "../../img/Logo_Senado.png"
+import "../../css/signUp.css"
 import { Link } from 'react-router-dom';
 function Register(args) {
   const [modal, setModal] = useState(false);

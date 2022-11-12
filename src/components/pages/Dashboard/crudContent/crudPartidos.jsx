@@ -6,7 +6,7 @@ import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Component } from "react";
 
-const url = "http://localhost:3001/partidos";
+const url = "http://localhost:8082/senado-iudigital/api/partidos/";
 
 class CrudApp extends Component {
   //almacenar data
@@ -135,7 +135,7 @@ class CrudApp extends Component {
             {this.state.data.map((partidos) => {
               return (
                 <tr>
-                  <td>{partidos.id}</td>
+                  <td>{partidos.id_partido}</td>
                   <td>{partidos.nombre}</td>
                   <td>{partidos.creacion}</td>
                   <td>{partidos.activo}</td>

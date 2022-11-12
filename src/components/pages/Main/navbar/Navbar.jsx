@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Image from "react-bootstrap/Image"
-import logo_senado from "../img/Logo_Senado.png"
-import "../navbar/Navbar.css"
+import logo_senado from "../../../img/Logo_Senado.png"
+import "./Navbar.css"
 import { Link } from 'react-router-dom';
-import Register from '../pages/Register';
+import Register from '../Register'
 import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
 
 

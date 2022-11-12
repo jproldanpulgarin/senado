@@ -1,7 +1,7 @@
 import React,{Fragment} from 'react';
-import footer from "../img/footer diplomado.jpg"
-import senado from "../img/senado.jpg"
-import "../css/slides.css"
+import footer from "../../../img/footer diplomado.jpg"
+import senado from "../../../img/senado.jpg"
+import "../../../css/slides.css"
 const Slides = () => {
   return ( 
     <Fragment>
