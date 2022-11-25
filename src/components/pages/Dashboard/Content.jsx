@@ -1,5 +1,5 @@
 import React from "react";
-import CrudApp from "../Dashboard/crudContent/crudPartidos";
+
 import header from "../../img/header.png";
 import "../../css/crudApp.css";
 import CrudProyectos from "./crudContent/crudProyectos"

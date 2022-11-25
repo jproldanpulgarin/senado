@@ -8,37 +8,10 @@ import { Form, FormGroup, Input, Label,Button } from "reactstrap";
 export default function Login() {
   const [email, setEmail] = useState(null);
   const [pass, setPass] = useState(null);
-  const url = "http://34.227.152.213:8080/senado-iudigital/auth/login";
-  const getData = async () => {
-    const { data } = await axios.post(
-      url,
-      {
-        email: email,
-        password: pass,
-      },
-      {
-        /*  mode: "no-cors", */
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type",
-        },
-      }
-    );
-    sessionStorage.setItem("token",data.token)
-    console.log(data);
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      getData();
-    } catch (e) {
-      console.log(e, "Falló");
-    }
-  };
+  
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form >
         <input
           type="text"
           name=""

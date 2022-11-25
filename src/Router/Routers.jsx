@@ -27,8 +27,7 @@ const Routers = () => {
           <Header />
           <Footer />
         </Route>
-
-        {sessionStorage.getItem("token") ? (
+     {/*    {sessionStorage.getItem("token") ? (
           <Route path="/contenido">
             <Aside />
             <Header />
@@ -39,7 +38,18 @@ const Routers = () => {
           <Route path="/login">
             <Login />
           </Route>
-        )}
+        )} */}
+
+        <Route path="/contenido">
+            <Aside />
+            <Header />
+            <Content />
+            <Footer />
+          </Route>
+        
+          <Route path="/login">
+            <Login />
+          </Route>
       </Switch>
     </Router>
   );

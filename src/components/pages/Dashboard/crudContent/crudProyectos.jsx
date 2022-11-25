@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 const CrudProyectos = () => {
-      const url = "http://34.227.152.213:8080/senado-iudigital/api/proyectos";
+     /*  const url = "http://34.227.152.213:8080/senado-iudigital/api/proyectos";
       const [token,setToken]=useState("Not")
       const getToken=()=>{
         sessionStorage.getItem("token")?setToken(sessionStorage.getItem("token")):window.location.href("/login")
@@ -25,14 +25,14 @@ const CrudProyectos = () => {
             "Access-Control-Allow-Headers": "Content-Type", }
           })
           console.log(proyectos);
-      };
+      }; */
   return (
     <div>
        <button
           className="btn btn-success"
-          onClick={() => {
+         /*  onClick={() => {
             peticionGet()
-          }}
+          }} */
         >
           Agregar Proyecto
         </button>
@@ -51,7 +51,11 @@ const CrudProyectos = () => {
             </tr>
           </thead>
           <tbody>
-            <></>
+            <>
+         {/*      {proyectos?proyectos.map(()=>{
+                <p>Hola</p>
+              }):null} */}
+            </>
           </tbody>
         </table>
 
